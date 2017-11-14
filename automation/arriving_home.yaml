@@ -1,0 +1,13 @@
+# Unlock the house and turn on lights when someone arrives home
+alias: "Disarm"
+trigger:
+  platform: state
+  entity_id: group.family
+  from: 'not_home'
+condition:
+  condition: time
+  after: '06:30:00'
+  before: '23:59:59'
+action:
+  service: script.turn_on
+  entity_id: script.arriving_home

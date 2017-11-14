@@ -1,0 +1,15 @@
+# Close Garage Door if opened for 10 minutes
+alias: "Close Garage Door"
+trigger:
+  platform: state
+  entity_id: sensor.garage_door_status
+  to: 'Open'
+  for:
+    minutes: 20
+action:
+  - service: notify.mypushover
+    data:
+      title: "The Garage Door Has Been Left Open"
+      message: "Someone has left the garage door open for at least the last 20 minutes."
+  - service: script.turn_on
+    entity_id: script.garage_door_warning

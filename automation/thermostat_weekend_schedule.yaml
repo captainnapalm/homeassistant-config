@@ -1,0 +1,13 @@
+# Set Nest thermostat weekend schedule 
+alias: "Nest thermostat weekend schedule"
+trigger:
+  platform: time
+  at: '08:15:00'
+condition:
+  condition: time
+  weekday:
+    - sat
+    - sun
+action:
+  service: script.turn_on
+  entity_id: script.thermostat_home_22

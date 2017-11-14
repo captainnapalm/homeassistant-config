@@ -1,0 +1,33 @@
+- name: Theatre Lights Up
+  entities:
+    light.basement_overhead:
+        state: on
+        brightness: 100
+        transition: 3
+    light.bottom_stairs_lights:
+        state: on
+        brightness: 50
+        transition: 3
+    light.tv_lights:
+        state: on
+
+- name: Theatre Lights Down
+  entities:
+    light.basement_overhead:
+        state: on
+        brightness: 45
+        transition: 3
+    light.bottom_stairs_lights:
+        state: on
+        brightness: 1
+        transition: 3
+    light.tv_lights:
+        state: on
+
+- name: Living Room media playing
+  entities:
+    light.front_hallway:
+      state: off
+    # light.living_room_lamp:
+      # state: on
+      # brightness: 1

@@ -1,0 +1,12 @@
+# Lower the lights when media is playing
+alias: "Basement Players playing"
+trigger:
+  - platform: state
+    entity_id: media_player.basement_players
+    to: 'playing'
+  - platform: state
+    entity_id: light.tv_lights
+    to: 'on'
+action:
+  service: scene.turn_on
+  entity_id: scene.theatre_lights_down

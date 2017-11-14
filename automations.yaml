@@ -1,0 +1,25 @@
+- !include automation/alarm.yaml
+- !include automation/arriving_home.yaml
+# - !include automation/arriving_home_late.yaml
+- !include automation/doorbell.yaml
+- !include automation/leaving_home.yaml
+- !include automation/lights_scheduledlights_1130pm.yaml
+- !include automation/lights_livingroomlamp_1hbeforesunset.yaml
+- !include automation/lights_outdoorlights_sunset.yaml
+- !include automation/lock_door_1130pm.yaml
+- !include automation/media_players_basement_paused.yaml
+- !include automation/media_players_basement_playing.yaml
+- !include automation/media_players_livingroom.yaml
+- !include automation/nest_co_alarm.yaml
+- !include automation/nest_smoke_alarm.yaml
+- !include automation/thermostat_sleeping_schedule.yaml
+- !include automation/thermostat_weekday_away.yaml
+- !include automation/thermostat_weekday_home.yaml
+- !include automation/thermostat_weekday_schedule.yaml
+- !include automation/thermostat_weekend_schedule.yaml
+# - !include automation/zwave_soft_reset.yaml
+# - !include automation/zwave_heal.yaml
+- !include automation/lock_front_door.yaml
+- !include automation/close_garage_door.yaml
+- !include automation/door_open.yaml
+# - !include automation/lock_battery_notify.yaml

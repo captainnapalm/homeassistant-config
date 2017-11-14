@@ -1,0 +1,169 @@
+# !include scripts/thermostat_home_18.yaml
+# !include scripts/thermostat_home_18.yaml
+# !include scripts/thermostat_home_22.yaml
+# !include scripts/thermostat_away.yaml
+
+thermostat_home_18:
+  alias: "Thermostat Home 18"
+  sequence:
+    - alias: Set thermostat Home
+      service: climate.set_away_mode
+      data:
+        entity_id: climate.hallway
+        away_mode: off
+    - alias: Set temperature to 18
+      service: climate.set_temperature
+      data:
+        entity_id: climate.hallway
+        temperature: 18
+        # temperature: '{{ states.input_slider.temperature_away.state | int }}'
+
+thermostat_home_22:
+  alias: "Thermostat Home 22"
+  sequence:
+    - alias: Set thermostat Home
+      service: climate.set_away_mode
+      data:
+        entity_id: climate.hallway
+        away_mode: off
+    - alias: Set temperature to 22
+      service: climate.set_temperature
+      data:
+        entity_id: climate.hallway
+        temperature: 21.5
+        # temperature: '{{ states.input_slider.temperature_home.state | int }}'
+
+thermostat_away:
+  alias: "Thermostat Away"
+  sequence:
+    - alias: Set thermostat away
+      service: climate.set_away_mode
+      data:
+        entity_id: climate.hallway
+        away_mode: on
+
+leaving_home:
+  alias: "Leaving Home"
+  sequence:
+    - alias: Lock front door
+      service: lock.lock
+      data: 
+        entity_id: lock.front_door_locked_10
+    - alias: Lock back door
+      service: lock.lock
+      data: 
+        entity_id: lock.back_door_locked_11
+    - alias: Turn off hallway light
+      service: light.turn_off
+      data: 
+        entity_id: light.front_hallway
+    # - alias: Close garage door
+      # service: cover.close_cover
+      # data: 
+        # entity_id: garage_door.garage_door_opener
+    - alias: Alarm is on
+      service: input_boolean.turn_on
+      data:
+        entity_id: input_boolean.alarm_state
+    - alias: send notification
+      service: notify.mypushover
+      data:
+        title: "No one is home anymore."
+        message: "The last family member has left the house."
+
+arriving_home:
+  alias: "Arriving Home"
+  sequence:
+    - alias: Unlock front door
+      service: lock.unlock
+      data: 
+        entity_id: lock.front_door_locked_10
+    - alias: Turn on hallway light
+      service: light.turn_on
+      data: 
+        entity_id: light.front_hallway
+    - alias: Turn on outdoor lights
+      service: light.turn_on
+      data: 
+        entity_id: light.outdoor_lights
+    - alias: Alarm is off
+      service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.alarm_state
+#    - alias: Open garage door
+#      service: garage_door.open
+#      data: 
+#        entity_id: garage_door.garage_door_opener
+
+arriving_home_late:
+  alias: "Arriving Home Late"
+  sequence:
+    # - alias: Unlock front door
+      # service: lock.unlock
+      # data: 
+        # entity_id: lock.front_door_locked_10
+    # - alias: Turn on hallway light
+      # service: light.turn_on
+      # data: 
+        # entity_id: light.front_hallway
+    # - alias: Turn on outdoor lights
+      # service: light.turn_on
+      # data: 
+        # entity_id: light.outdoor_lights
+    - alias: Alarm is off
+      service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.alarm_state
+#    - alias: Open garage door
+#      service: garage_door.open
+#      data: 
+#        entity_id: garage_door.garage_door_opener
+
+greeting:
+  alias: Greeting
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.kitchen_home
+        volume_level: 0.50
+    - service: tts.google_say
+      entity_id: media_player.kitchen_home
+      data_template:
+        message: >
+          Hello Hello Hello.
+          {% if now().strftime("%H")|int > 9 and now().strftime("%H")|int < 11 %}
+          Good morning. It's {{now().strftime("%I")}}:{{now().strftime("%M")}} {{now().strftime("%p")}} 
+          {% elif now().strftime("%H")|int > 21 and now().strftime("%H")|int < 23 %}
+          Good evening. It's {{now().strftime("%I")}}:{{now().strftime("%M")}} {{now().strftime("%p")}} 
+          {% elif now().strftime("%H")|int < 12 %}
+          Good morning. It's {{now().strftime("%I")|replace("0", "")}}:{{now().strftime("%M")}} {{now().strftime("%p")}} 
+          {% elif now().strftime("%H")|int < 18 %}
+          Good afternoon. It's {{now().strftime("%I")|replace("0", "")}}:{{now().strftime("%M")}} {{now().strftime("%p")}} 
+          {% else %}
+          Good evening. It's {{now().strftime("%I")|replace("0", "")}}:{{now().strftime("%M")}} {{now().strftime("%p")}} 
+          {% endif %}
+          the weather in Edmonton is {{states.sensor.dark_sky_temperature.state|round}} degrees and {{states.sensor.dark_sky_summary.state}}. Today will be {{states.sensor.dark_sky_hourly_summary.state|replace(".", "")}}, with a high of {{states.sensor.dark_sky_daily_high_temperature.state|round}} degrees.
+          {% if is_state('sensor.garage_door_status', 'Open') %}
+          Heads up: The garage door has been left open
+          {% endif %}
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.kitchen_home
+        volume_level: 0.15
+
+garage_door_warning:
+  alias: Garage Door Warning
+  sequence:
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.kitchen_home
+        volume_level: 0.50
+    - service: tts.google_say
+      entity_id: media_player.kitchen_home
+      data_template:
+        message: >
+          Hello Hello Hello. Heads up: The garage door has been left open
+    - service: media_player.volume_set
+      data:
+        entity_id: media_player.kitchen_home
+        volume_level: 0.15

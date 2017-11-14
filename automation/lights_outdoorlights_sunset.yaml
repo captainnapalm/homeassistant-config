@@ -1,0 +1,8 @@
+# Turn outdoor lights on at sunset
+alias: "Outdoor Lights On at Sunset"
+trigger:
+  platform: sun
+  event: sunset
+action:
+  service: light.turn_on
+  entity_id: light.outdoor_lights

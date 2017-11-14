@@ -1,0 +1,10 @@
+# Raise the lights when media is paused or stopped
+alias: "Basement Players paused/stopped"
+trigger:
+  platform: state
+  entity_id: media_player.basement_players
+  from: 'playing'
+action:
+  service: scene.turn_on
+  entity_id: scene.theatre_lights_up
+

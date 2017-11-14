@@ -1,0 +1,18 @@
+# Receive a phone call from IFTTT when Carbon Monoxide is detected
+alias: "Carbon Monoxide Alarm"
+trigger:
+  platform: state
+  entity_id: group.nest_co_status
+  to: 'Emergency'
+# condition:
+  # condition: and
+  # conditions:
+    # - condition: state
+      # entity_id: 'group.family'
+      # state: 'not_home'
+    # - condition: state
+      # entity_id: 'input_boolean.alarm_state'
+      # state: 'on'
+action:
+  service: ifttt.trigger
+  data: {"event":"nest_co_alarm"}

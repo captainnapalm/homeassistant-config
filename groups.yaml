@@ -1,0 +1,208 @@
+default_view:
+  view: yes
+  entities:
+    - group.general
+    - group.lights
+    - group.sensors2
+    - device_tracker.brendan
+    - device_tracker.heather
+    # - device_tracker.rahul
+    # - device_tracker.kristin
+    # - device_tracker.cassidy
+    # - device_tracker.cheryl
+    - sensor.megaplex
+    # - group.media_server
+    - camera.entryway_entryway
+    - camera.nursery_nursery
+    # - camera.nursery
+
+family:
+  name: Family
+  view: no
+  entities:
+    - device_tracker.brendan
+    - device_tracker.heather
+    - device_tracker.conrad
+    - device_tracker.stephanie
+    - device_tracker.cassidy
+    - device_tracker.optimusprime
+    - device_tracker.kristin
+    - device_tracker.cheryl
+
+general:
+  name: General
+  view: no
+  entities:
+    - input_boolean.alarm_state
+    - input_select.arm_alarm
+    - lock.front_door_locked_10
+    - lock.back_door_locked_11
+    # - cover.garage_door_opener
+    - cover.garage_door_opener
+    # - input_slider.temperature_home
+    # - input_slider.temperature_away
+    - climate.hallway
+    - sensor.hallway_thermostat_humidity
+    - switch.aeotec_zw056_doorbell_gen5_switch_13_0
+    - script.greeting
+    - sun.sun
+
+lights:
+  name: Lights
+  view: no
+  entities:
+    - light.outdoor_lights
+    - light.front_hallway
+    - switch.kitchen_lights
+    - light.living_room_lamp
+    # - light.aeotec_zw099_smart_dimmer_6_level_12_0_2
+    # - light.aeotec_zw099_smart_dimmer_6_level_12_0
+    - light.dining_room
+    - switch.computer_room
+    - light.brendans_bedside_lamp
+    - light.heathers_bedside_lamp
+    - light.nursery_lamp
+    - light.nursery
+    - light.basement_overhead
+    - light.bottom_stairs_lights
+    - light.tv_lights
+    - light.backdoor_lights
+
+living_room_lights:
+  name: Living Room Lights
+  view: no
+  entities:
+    - light.living_room_lamp
+    # - light.aeotec_zw099_smart_dimmer_6_level_12_0
+
+scheduled_lights:
+  name: Scheduled Lights
+  view: no
+  entities:
+    - group.living_room_lights
+    - light.outdoor_lights
+
+nursery:
+  name: Nursery
+  entities:
+    - light.nursery
+    - light.nursery_lamp
+    - camera.nursery
+    # - media_player.nursery
+
+media_room:
+  name: Media Room
+  entities:
+    - light.basement_overhead
+    - light.tv_lights
+    - light.bottom_stairs_lights
+    - media_player.basement_roku
+    - scene.theatre_lights_down
+    - scene.theatre_lights_up
+    - automation.basement_players_pausedstopped
+    - automation.basement_players_playing
+
+living_room:
+  name: Living Room
+  entities:
+    - light.living_room_lamp
+    - light.front_hallway
+    - media_player.living_room_roku
+    - scene.living_room_media_playing
+    - automation.living_room_playing
+    - automation.living_room_lamp_and_outdoor_lights_off_at_1130pm
+    - automation.living_room_lamp_on_an_hour_before_sunset
+    
+kitchen:
+  name: Kitchen
+  entities:
+    - switch.kitchen_lights
+    - media_player.kitchen_home
+
+master_bedroom:
+  name: Master Bedroom
+  entities:
+    - media_player.bedroom_roku
+    - light.brendans_bedside_lamp
+    - light.heathers_bedside_lamp
+
+rooms:
+  name: Rooms 
+  view: yes
+  entities:
+    - group.nursery
+    - group.media_room
+    - group.living_room
+    - group.kitchen
+    - group.master_bedroom
+
+sensors:
+  name: Sensors
+  entities:
+    - binary_sensor.back_door_sensor_opened
+    - binary_sensor.basement_window_sensor_opened
+    - binary_sensor.front_door_sensor_opened
+    - binary_sensor.garage_door_sensor_opened
+    
+sensors2:
+  name: Doors and Windows
+  entities:
+    - sensor.back_door_status
+    - sensor.basement_window_status
+    - sensor.front_door_status
+    - sensor.side_garage_door_status
+    - sensor.garage_door_status
+
+# media_server:
+  # name: Media Server
+  # view: yes
+  # entities:
+    # - sensor.megaplex
+    # - sensor.speedtest_download
+    # - sensor.speedtest_upload
+    # - sensor.speedtest_ping
+    # - sensor.nzbget_speed
+    # - sensor.nzbget_download_paused
+    # - sensor.nzbget_article_cache
+    # - sensor.nzbget_disk_free
+    # - sensor.nzbget_post_processing_paused
+    # - sensor.nzbget_queue_size
+    
+nest_co_status:
+  name: Nest CO Status
+  entities:
+    - sensor.basement_co_status
+    - sensor.entryway_co_status
+
+nest_smoke_status:
+  name: Nest Smoke Status
+  entities:
+    - sensor.basement_smoke_status
+    - sensor.entryway_smoke_status
+    
+automations:
+  name: Automation
+  view: yes
+  entities:
+    - automation.arm
+    - automation.disarm
+    # - automation.disarm_arriving_home_late
+    - automation.doorbell_has_been_pressed
+    - automation.door_opened
+    - automation.unexpected_entry
+    - automation.carbon_monoxide_alarm
+    - automation.smoke_alarm
+    - automation.temp_weekday_away
+    - automation.temp_weekday_home
+    - automation.close_garage_door
+    - automation.lock_door_when_closed
+    - automation.lock_doors_at_1130pm
+    - automation.nest_thermostat_sleeping_schedule
+    - automation.nest_thermostat_weekday_schedule
+    - automation.nest_thermostat_weekend_schedule
+    - automation.living_room_lamp_and_outdoor_lights_off_at_1130pm
+    - automation.living_room_lamp_on_an_hour_before_sunset
+    - automation.outdoor_lights_on_at_sunset
+    - automation.basement_players_pausedstopped
+    - automation.basement_players_playing
+    - automation.living_room_playing

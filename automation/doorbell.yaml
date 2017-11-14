@@ -1,0 +1,11 @@
+# Send notification when someone presses the doorbell
+alias: "Doorbell has been pressed"
+trigger:
+  platform: state
+  entity_id: switch.aeotec_zw056_doorbell_gen5_switch_13_0
+  to: 'on'
+action:
+  service: notify.mypushover
+  data:
+    title: "Doorbell has been pressed."
+    message: "Someone is at the front door."

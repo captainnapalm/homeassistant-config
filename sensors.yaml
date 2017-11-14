@@ -1,0 +1,121 @@
+- platform: nest
+  monitored_conditions:
+    - 'co_status'
+    - 'smoke_status'
+
+- platform: plex
+  name: Megaplex
+  host: 192.168.2.23
+    
+- platform: darksky
+  api_key: 1f525aad35887f984c775392f78c78cc
+  monitored_conditions:
+    - summary
+    - temperature
+    - hourly_summary
+    - temperature_max
+
+- platform: wunderground
+  api_key: b5d7ada5924dc24d
+  monitored_conditions:
+      - alerts
+      - dewpoint_c
+      - dewpoint_string
+      - feelslike_c
+      - feelslike_string
+      - heat_index_c
+      - heat_index_string
+      - elevation
+      - location
+      - observation_time
+      - precip_1hr_metric
+      - precip_1hr_string
+      - precip_today_in
+      - precip_today_metric
+      - precip_today_string
+      - pressure_in
+      - pressure_mb
+      - pressure_trend
+      - relative_humidity
+      - station_id
+      - solarradiation
+      - temperature_string
+      - temp_c
+      - UV
+      - visibility_km
+      - weather
+      - wind_degrees
+      - wind_dir
+      - wind_gust_kph
+      - wind_kph
+      - wind_string
+
+- platform: template
+  sensors:
+    front_door_status:
+      value_template: '{% if states.binary_sensor.front_door_sensor_opened %}
+        {% if states.binary_sensor.front_door_sensor_opened.state == "on" %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+        {% else %}
+        n/a
+        {% endif %}'
+      friendly_name: 'Front Door'
+
+- platform: template
+  sensors:
+    back_door_status:
+      value_template: '{% if states.binary_sensor.back_door_sensor_opened %}
+        {% if states.binary_sensor.back_door_sensor_opened.state == "on" %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+        {% else %}
+        n/a
+        {% endif %}'
+      friendly_name: 'Back Door'
+      
+- platform: template
+  sensors:
+    side_garage_door_status:
+      value_template: '{% if states.binary_sensor.garage_door_sensor_opened %}
+        {% if states.binary_sensor.garage_door_sensor_opened.state == "on" %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+        {% else %}
+        n/a
+        {% endif %}'
+      friendly_name: 'Side Garage Door'
+      
+- platform: template
+  sensors:
+    basement_window_status:
+      value_template: '{% if states.binary_sensor.basement_window_sensor_opened %}
+        {% if states.binary_sensor.basement_window_sensor_opened.state == "on" %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+        {% else %}
+        n/a
+        {% endif %}'
+      friendly_name: 'Basement Window'
+      
+- platform: template
+  sensors:
+    garage_door_status:
+      value_template: '{% if states.cover.garage_door_opener %}
+        {% if states.cover.garage_door_opener.state == "open" %}
+          Open
+        {% else %}
+          Closed
+        {% endif %}
+        {% else %}
+        n/a
+        {% endif %}'
+      friendly_name: 'Garage Door Opener'

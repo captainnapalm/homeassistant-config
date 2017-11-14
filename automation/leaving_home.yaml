@@ -1,0 +1,13 @@
+# Lock the house and turn off lights when someone arrives home
+alias: "Arm"
+trigger:
+  platform: state
+  entity_id: group.family
+  to: 'not_home'
+condition:
+  condition: state
+  entity_id: input_select.arm_alarm
+  state: 'Arm Capable'
+action:
+  service: script.turn_on
+  entity_id: script.leaving_home

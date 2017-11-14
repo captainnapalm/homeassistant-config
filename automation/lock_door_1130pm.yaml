@@ -1,0 +1,8 @@
+# Lock both doors at 11:30PM
+alias: Lock doors at 11:30PM
+trigger:
+  platform: time
+  at: '23:30:00'
+action:
+  service: lock.lock
+  entity_id: group.all_locks

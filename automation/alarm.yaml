@@ -1,0 +1,18 @@
+# Receive a phone call from IFTTT when Sensors are tripped and no one is home
+alias: "Unexpected Entry"
+trigger:
+  platform: state
+  entity_id: group.sensors
+  to: 'on'
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: 'group.family'
+      state: 'not_home'
+    - condition: state
+      entity_id: 'input_boolean.alarm_state'
+      state: 'on'
+action:
+  service: ifttt.trigger
+  data: {"event":"unexpected_entry"}

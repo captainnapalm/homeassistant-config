@@ -1,0 +1,9 @@
+# Turn living room lamp on an hour before sunset
+alias: "Living Room Lamp On an hour before sunset"
+trigger:
+  platform: sun
+  event: sunset
+  offset: "-01:00:00"
+action:
+  service: homeassistant.turn_on
+  entity_id: group.living_room_lights

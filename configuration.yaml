@@ -1,0 +1,274 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude_secret
+  longitude: !secret longitude_secret
+  elevation: 669
+  unit_system: metric
+  time_zone: America/Edmonton
+  customize: !include customize.yaml
+  
+
+http:
+  api_password: !secret http_password
+
+# Track the sun
+sun:
+
+# Enables the frontend
+frontend:
+
+# Logger level
+# logger:
+  # default: critical
+
+# Checks for available updates
+updater:
+
+# Show links to resources in log and frontend
+# introduction:
+
+# Allows you to issue voice commands from the frontend
+conversation:
+
+# View all events in a logbook
+logbook:
+  exclude:
+    entities:
+      - binary_sensor.back_door_sensor
+      - binary_sensor.basement_nest_protect_online
+      - binary_sensor.basement_window_sensor
+      - binary_sensor.entryway_camera__zone_1_activity
+      - binary_sensor.entryway_camera__zone_2_activity
+      - binary_sensor.entryway_camera_motion_detected
+      - binary_sensor.entryway_camera_online
+      - binary_sensor.entryway_camera_person_detected
+      - binary_sensor.entryway_camera_sound_detected
+      - binary_sensor.entryway_nest_protect_online
+      - binary_sensor.front_door_sensor
+      - binary_sensor.garage_door_sensor
+      - binary_sensor.hallway_thermostat_fan
+      - binary_sensor.hallway_thermostat_has_leaf
+      - binary_sensor.hallway_thermostat_is_locked
+      - binary_sensor.hallway_thermostat_is_using_emergency_heat
+      - binary_sensor.hallway_thermostat_online
+      - binary_sensor.home_basement_nest_protect_co_detected
+      - binary_sensor.home_basement_nest_protect_smoke_detected
+      - binary_sensor.home_entryway_nest_protect_co_detected
+      - binary_sensor.home_entryway_nest_protect_smoke_detected
+      - binary_sensor.hub_hub
+      - binary_sensor.living_room_camera_motion_detected
+      - binary_sensor.living_room_camera_online
+      - binary_sensor.living_room_camera_person_detected
+      - binary_sensor.living_room_camera_sound_detected
+      - binary_sensor.overflow_drain_liquid_detected
+      - binary_sensor.wink_relays_top_button_hub
+      - camera.entryway
+      - camera.living_room
+      - group.all_automations
+      - group.all_devices
+      - group.all_lights
+      - group.all_locks
+      - group.all_scripts
+      - group.automations
+      - group.default_view
+      - group.family
+      - group.general
+      - group.kitchen
+      - group.lights
+      - group.living_room
+      - group.master_bedroom
+      - group.media_room
+      - group.nest_co_status
+      - group.nest_smoke_status
+      - group.nursery
+      - group.rooms
+      - group.scheduled_lights
+      - group.sensors
+      - media_player.basement_roku
+      - media_player.basement_players
+      - media_player.bedroom_players
+      - media_player.living_room_players
+      - media_player.nexus_7_2012
+      - sensor.basement_nest_protect_battery_health
+      - sensor.dark_sky_apparent_temperature
+      - sensor.dark_sky_cloud_coverage
+      - sensor.dark_sky_daily_high_apparent_temperature
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_daily_low_apparent_temperature
+      - sensor.dark_sky_daily_low_temperature
+      - sensor.dark_sky_daily_max_precip_intensity
+      - sensor.dark_sky_daily_summary
+      - sensor.dark_sky_dew_point
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_humidity
+      - sensor.dark_sky_icon
+      - sensor.dark_sky_minutely_summary
+      - sensor.dark_sky_nearest_storm_bearing
+      - sensor.dark_sky_nearest_storm_distance
+      - sensor.dark_sky_ozone
+      - sensor.dark_sky_precip
+      - sensor.dark_sky_precip_intensity
+      - sensor.dark_sky_precip_probability
+      - sensor.dark_sky_pressure
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_temperature
+      - sensor.dark_sky_visibility
+      - sensor.dark_sky_wind_bearing
+      - sensor.dark_sky_wind_speed
+      - sensor.entryway_nest_protect_battery_health
+      - sensor.hallway_thermostat_humidity
+      - sensor.hallway_thermostat_hvac_state
+      - sensor.hallway_thermostat_operation_mode
+      - sensor.hallway_thermostat_target
+      - sensor.hallway_thermostat_temperature
+      - sensor.megaplex
+      - sun.sun
+
+
+
+# Enables support for tracking state changes over time.
+history:
+
+# Discover some devices automatically
+# discovery:
+
+group: !include groups.yaml
+
+# Nest
+nest:
+  client_id: !secret nest_client_id
+  client_secret: !secret nest_client_secret
+
+climate:
+  platform: nest
+
+#sensors
+sensor: !include sensors.yaml
+
+# Wink
+wink:
+  # email: !secret wink_email
+  # password: !secret wink_password
+  local_control: True
+
+#IFTTT
+ifttt:
+  key: !secret ifttt_key
+
+#Media Players (Plex)
+media_player:
+  - platform: plex
+  # Living Room - v2
+  # - platform: cast
+    # host: 192.168.2.194
+  # nursery - LG Music Flow H3
+  # - platform: cast
+    # host: 192.168.2.239
+  # kitchen - Google Home
+  - platform: cast
+    host: 192.168.2.205
+  # Nexus Player
+  # - platform: cast
+    # host: 192.168.2.79
+  # Chromecast Audio
+  # - platform: cast
+    # host: 192.168.2.192
+  # Bedroom Roku 3
+  # - platform: roku
+    # host: 192.168.2.99
+  # Living Room Roku 3
+  # - platform: roku
+    # host: 192.168.2.107
+  # Basement Roku 3
+  # - platform: roku
+    # host: 192.168.2.55
+  - platform: universal
+    name: Basement Players
+    children:
+      # - media_player.basement
+      - media_player.basement_roku
+      - media_player.my_nexus_player
+#      - media_player.roku_1gs3a2056551
+  - platform: universal
+    name: Living Room Players
+    children:
+      # - media_player.living_room
+      - media_player.living_room_roku
+  - platform: universal
+    name: Bedroom Players
+    children:
+      # - media_player.bedroom
+      - media_player.bedroom_roku
+  - platform: vlc
+    name: speaker_1
+    arguments: '--alsa-audio-device=hw:1,0'
+
+#pushbullet
+notify:
+  - platform: pushbullet
+    api_key: !secret pushbullet_api_key
+    name: mypushbullet
+  - platform: pushover
+    api_key: !secret pushover_api_key
+    user_key: !secret pushover_user_key
+    name: mypushover
+
+#Input Selects
+input_select:
+  arm_alarm:
+    name: Set Alarm
+    options:
+     - Keep Disarmed
+     - Arm Capable
+    initial: Arm Capable
+    icon: mdi:alarm-check
+
+    
+#Input Boolean
+input_boolean:
+  alarm_state:
+    name: Alarm State
+    initial: off
+    icon: mdi:bell
+
+# Zwave Hub
+zwave:
+  usb_path: /dev/ttyACM0
+  config_path: /srv/homeassistant/homeassistant_venv/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
+  polling_interval: 30000
+  new_entity_ids: false
+  
+#asus router for device tracker
+device_tracker:
+  platform: asuswrt
+  host: 192.168.2.1
+  protocol: ssh
+  username: !secret asuswrt_user
+  password: !secret asuswrt_password
+  track_new_devices: no
+  interval_seconds: 5
+  consider_home: 600
+
+camera:
+  - platform: nest
+
+scene: !include scenes.yaml
+
+automation: !include automations.yaml
+
+script: !include scripts.yaml
+
+tts:
+  - platform: google
+
+vacuum:
+  - platform: roomba
+    host: 192.168.2.186
+    username: !secret roomba_blid_secret
+    password: !secret roomba_password_secret
+    name: Geoffrey
+# cover:
+  # - platform: myq
+    # username: brendan.berg@gmail.com
+    # password: PrabRU4u
+    # type: chamberlain

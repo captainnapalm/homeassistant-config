@@ -1,0 +1,8 @@
+# Notify if battery level of either lock is below 30%
+alias: "Notify if battery level of either lock is below 30%"
+trigger:
+  platform: lock
+  at: '23:30:00'
+action:
+  service: light.turn_off
+  entity_id: group.scheduled_lights

@@ -1,0 +1,7 @@
+# Soft reset of wave network
+alias: soft reset at 2:30am
+trigger:
+  platform: time
+  at: '2:30:00'
+action:
+  service: zwave.soft_reset

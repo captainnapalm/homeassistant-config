@@ -1,0 +1,99 @@
+#sensors:
+sensor.basement_window_status:
+  icon: mdi:window-closed
+  # hidden: true
+sensor.back_door_status:
+  icon: mdi:glassdoor
+  # hidden: true
+sensor.front_door_status:
+  icon: mdi:glassdoor
+  # hidden: true
+sensor.side_garage_door_status:
+  icon: mdi:glassdoor
+  # hidden: true
+sensor.garage_door_status:
+  icon: mdi:window-closed
+binary_sensor.overflow_drain:
+  hidden: true
+sensor.speedtest_upload:
+  icon: mdi:arrow-up-bold-circle
+sensor.speedtest_download:
+  icon: mdi:arrow-down-bold-circle
+sensor.speedtest_ping:
+  icon: mdi:speedometer
+sensor.back_door_alarm_level_11:
+  hidden: true
+sensor.back_door_alarm_type_11:
+  hidden: true
+sensor.front_door_alarm_level_10:
+  hidden: true
+sensor.front_door_alarm_type_10:
+  hidden: true
+sensor.nzbget_speed:
+  icon: mdi:speedometer
+sensor.nzbget_queue_size:
+  icon: mdi:harddisk
+
+#Switches
+switch.bottom_light_load:
+  hidden: true
+switch.kitchen_lights:
+  icon: mdi:lightbulb
+switch.computer_room:
+  icon: mdi:lightbulb
+
+#Groups
+group.scheduled_lights:
+  hidden: true
+
+#Locks
+lock.front_door_locked_10:
+  friendly_name: "Front Door Lock"
+lock.back_door_locked_11:
+  friendly_name: "Back Door Lock"
+
+#Lights
+light.aeotec_zw099_smart_dimmer_6_level_12_0:
+  friendly_name: "Christmas Lights"
+
+#Scripts
+script.thermostat_home_18:
+  hidden: true
+script.thermostat_home_22:
+  hidden: true
+script.thermostat_away:
+  hidden: true
+script.greeting:
+  icon: mdi:text-to-speech
+
+#Media Players
+media_player.nexus_player:
+  hidden: true
+media_player.my_nexus_6:
+  hidden: true
+# media_player.living_room_roku:
+  # hidden: true
+media_player.living_room:
+  hidden: true
+# media_player.basement_roku:
+  # hidden: true
+media_player.my_nexus_player:
+  hidden: true
+media_player.basement:
+  hidden: true
+
+#scenes
+scene.theatre_lights_up:
+  icon: mdi:television
+scene.theatre_lights_down:
+  icon: mdi:television-guide
+scene.living_room_media_playing:
+  icon: mdi:television-guide
+
+#garage door
+cover.garage_door_opener:
+  friendly_name: "Garage Door Opener"
+
+#thermostat
+climate.home_hallway_thermostat:
+  friendly_name: "Nest"

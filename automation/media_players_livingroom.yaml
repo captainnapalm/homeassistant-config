@@ -1,0 +1,13 @@
+# Set lighting in the living room when media starts playing
+alias: "Living Room playing"
+trigger:
+  platform: state
+  entity_id: media_player.living_room_players
+  to: 'playing'
+condition:
+  condition: state
+  entity_id: sun.sun
+  state: 'below_horizon'
+action:
+  service: scene.turn_on
+  entity_id: scene.living_room_media_playing

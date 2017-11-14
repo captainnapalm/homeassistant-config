@@ -1,0 +1,16 @@
+#asus router for device tracker
+platform: asuswrt
+host: 192.168.2.1
+username: admin
+password: Oilers
+# Optional configuration
+
+# If new discovered devices are tracked by default (default: yes)
+track_new_devices: no
+# Seconds between each scan for new devices (default: 12)
+interval_seconds: 5
+# Seconds to wait till marking someone as not home after not being seen
+# (default: 180)
+consider_home: 120
+
+#- platform: bluetooth_tracker
