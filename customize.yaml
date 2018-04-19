@@ -33,6 +33,10 @@ sensor.nzbget_speed:
   icon: mdi:speedometer
 sensor.nzbget_queue_size:
   icon: mdi:harddisk
+sensor.brendan_status:
+  entity_picture: http://i.imgur.com/OzJ2WNx.jpg
+sensor.heather_status:
+  entity_picture: http://i.imgur.com/QsNcUpR.jpg
 
 #Switches
 switch.bottom_light_load:

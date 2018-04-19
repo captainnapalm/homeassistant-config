@@ -2,7 +2,7 @@
 alias: "Nest thermostat weekend schedule"
 trigger:
   platform: time
-  at: '08:15:00'
+  at: '07:45:00'
 condition:
   condition: time
   weekday:

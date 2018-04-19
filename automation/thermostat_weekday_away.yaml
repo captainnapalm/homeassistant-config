@@ -16,4 +16,4 @@ condition:
     - fri
 action:
   service: script.turn_on
-  entity_id: script.thermostat_away
+  entity_id: script.thermostat_home_18

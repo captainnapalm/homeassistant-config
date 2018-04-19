@@ -1,0 +1,20 @@
+alias: Mark person as just left
+trigger:
+  - platform: state
+    entity_id: device_tracker.brendan
+    from: 'home'
+    to: 'not_home'
+  - platform: state
+    entity_id: device_tracker.heather
+    from: 'home'
+    to: 'not_home'
+action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: >
+        {% if trigger.entity_id == 'device_tracker.brendan' %}
+          input_select.brendan_status_dropdown
+        {% else %}
+          input_select.heather_status_dropdown
+        {% endif %}
+      option: Just Left

@@ -1,0 +1,16 @@
+alias: Mark Brendan as away when home assistant starts
+initial_state: 'on'
+trigger:
+  - platform: homeassistant
+    event: start
+condition:
+  condition: and
+  conditions:
+    - condition: state
+      entity_id: device_tracker.brendan
+      state: 'not_home'
+action:
+  - service: input_select.select_option
+    data:
+      entity_id: input_select.brendan_status_dropdown
+      option: Away

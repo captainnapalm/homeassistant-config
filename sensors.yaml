@@ -6,7 +6,7 @@
 - platform: plex
   name: Megaplex
   host: 192.168.2.23
-    
+
 - platform: darksky
   api_key: 1f525aad35887f984c775392f78c78cc
   monitored_conditions:
@@ -14,6 +14,7 @@
     - temperature
     - hourly_summary
     - temperature_max
+    - precip_probability
 
 - platform: wunderground
   api_key: b5d7ada5924dc24d
@@ -30,15 +31,15 @@
       - observation_time
       - precip_1hr_metric
       - precip_1hr_string
-      - precip_today_in
+      # - precip_today_in
       - precip_today_metric
       - precip_today_string
-      - pressure_in
-      - pressure_mb
-      - pressure_trend
+      # - pressure_in
+      # - pressure_mb
+      # - pressure_trend
       - relative_humidity
       - station_id
-      - solarradiation
+      # - solarradiation
       - temperature_string
       - temp_c
       - UV
@@ -77,7 +78,7 @@
         n/a
         {% endif %}'
       friendly_name: 'Back Door'
-      
+
 - platform: template
   sensors:
     side_garage_door_status:
@@ -91,7 +92,7 @@
         n/a
         {% endif %}'
       friendly_name: 'Side Garage Door'
-      
+
 - platform: template
   sensors:
     basement_window_status:
@@ -105,7 +106,7 @@
         n/a
         {% endif %}'
       friendly_name: 'Basement Window'
-      
+
 - platform: template
   sensors:
     garage_door_status:
@@ -119,3 +120,14 @@
         n/a
         {% endif %}'
       friendly_name: 'Garage Door Opener'
+
+- platform: template
+  sensors:
+    brendan_status:
+      value_template: '{{ states.input_select.brendan_status_dropdown.state }}'
+      friendly_name: 'Brendan'
+- platform: template
+  sensors:
+    heather_status:
+      value_template: '{{ states.input_select.heather_status_dropdown.state }}'
+      friendly_name: 'Heather'

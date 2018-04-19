@@ -1,46 +1,34 @@
-# !include scripts/thermostat_home_18.yaml
-# !include scripts/thermostat_home_18.yaml
-# !include scripts/thermostat_home_22.yaml
-# !include scripts/thermostat_away.yaml
-
 thermostat_home_18:
   alias: "Thermostat Home 18"
   sequence:
     - alias: Set thermostat Home
-      service: climate.set_away_mode
+      service: nest.set_mode
       data:
-        entity_id: climate.hallway
-        away_mode: off
+        home_mode: home
     - alias: Set temperature to 18
       service: climate.set_temperature
       data:
         entity_id: climate.hallway
         temperature: 18
-        # temperature: '{{ states.input_slider.temperature_away.state | int }}'
-
+        
 thermostat_home_22:
   alias: "Thermostat Home 22"
   sequence:
     - alias: Set thermostat Home
-      service: climate.set_away_mode
+      service: nest.set_mode
       data:
-        entity_id: climate.hallway
-        away_mode: off
+        home_mode: home
     - alias: Set temperature to 22
       service: climate.set_temperature
       data:
         entity_id: climate.hallway
         temperature: 21.5
-        # temperature: '{{ states.input_slider.temperature_home.state | int }}'
-
+        
 thermostat_away:
-  alias: "Thermostat Away"
   sequence:
-    - alias: Set thermostat away
-      service: climate.set_away_mode
+    - service: nest.set_mode
       data:
-        entity_id: climate.hallway
-        away_mode: on
+        home_mode: away
 
 leaving_home:
   alias: "Leaving Home"
@@ -57,10 +45,6 @@ leaving_home:
       service: light.turn_off
       data: 
         entity_id: light.front_hallway
-    # - alias: Close garage door
-      # service: cover.close_cover
-      # data: 
-        # entity_id: garage_door.garage_door_opener
     - alias: Alarm is on
       service: input_boolean.turn_on
       data:
@@ -90,34 +74,14 @@ arriving_home:
       service: input_boolean.turn_off
       data:
         entity_id: input_boolean.alarm_state
-#    - alias: Open garage door
-#      service: garage_door.open
-#      data: 
-#        entity_id: garage_door.garage_door_opener
 
 arriving_home_late:
   alias: "Arriving Home Late"
   sequence:
-    # - alias: Unlock front door
-      # service: lock.unlock
-      # data: 
-        # entity_id: lock.front_door_locked_10
-    # - alias: Turn on hallway light
-      # service: light.turn_on
-      # data: 
-        # entity_id: light.front_hallway
-    # - alias: Turn on outdoor lights
-      # service: light.turn_on
-      # data: 
-        # entity_id: light.outdoor_lights
     - alias: Alarm is off
       service: input_boolean.turn_off
       data:
         entity_id: input_boolean.alarm_state
-#    - alias: Open garage door
-#      service: garage_door.open
-#      data: 
-#        entity_id: garage_door.garage_door_opener
 
 greeting:
   alias: Greeting

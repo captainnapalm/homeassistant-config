@@ -1,4 +1,5 @@
 default_view:
+  name: Home
   view: yes
   entities:
     - group.general
@@ -6,15 +7,8 @@ default_view:
     - group.sensors2
     - device_tracker.brendan
     - device_tracker.heather
-    # - device_tracker.rahul
-    # - device_tracker.kristin
-    # - device_tracker.cassidy
-    # - device_tracker.cheryl
-    - sensor.megaplex
-    # - group.media_server
     - camera.entryway_entryway
     - camera.nursery_nursery
-    # - camera.nursery
 
 family:
   name: Family
@@ -29,21 +23,35 @@ family:
     - device_tracker.kristin
     - device_tracker.cheryl
 
+hacp_general:
+  name: Control Panel
+  view: no
+  entities:
+    - device_tracker.brendan
+    - device_tracker.heather
+    - input_boolean.alarm_state
+    - light.garage_door_opener
+    - light.front_door_lock
+    - light.back_door_lock
+    - camera.entryway_entryway
+    - camera.nursery_nursery
+
 general:
   name: General
   view: no
   entities:
     - input_boolean.alarm_state
     - input_select.arm_alarm
+    - sensor.brendan_status
+    - sensor.heather_status
     - lock.front_door_locked_10
+    # - light.front_door_lock
     - lock.back_door_locked_11
-    # - cover.garage_door_opener
+    # - light.back_door_lock
     - cover.garage_door_opener
-    # - input_slider.temperature_home
-    # - input_slider.temperature_away
+    # - light.garage_door_opener
     - climate.hallway
     - sensor.hallway_thermostat_humidity
-    - switch.aeotec_zw056_doorbell_gen5_switch_13_0
     - script.greeting
     - sun.sun
 
@@ -112,7 +120,7 @@ living_room:
     - automation.living_room_playing
     - automation.living_room_lamp_and_outdoor_lights_off_at_1130pm
     - automation.living_room_lamp_on_an_hour_before_sunset
-    
+
 kitchen:
   name: Kitchen
   entities:
@@ -127,7 +135,7 @@ master_bedroom:
     - light.heathers_bedside_lamp
 
 rooms:
-  name: Rooms 
+  name: Rooms
   view: yes
   entities:
     - group.nursery
@@ -143,7 +151,7 @@ sensors:
     - binary_sensor.basement_window_sensor_opened
     - binary_sensor.front_door_sensor_opened
     - binary_sensor.garage_door_sensor_opened
-    
+
 sensors2:
   name: Doors and Windows
   entities:
@@ -167,7 +175,7 @@ sensors2:
     # - sensor.nzbget_disk_free
     # - sensor.nzbget_post_processing_paused
     # - sensor.nzbget_queue_size
-    
+
 nest_co_status:
   name: Nest CO Status
   entities:
@@ -179,7 +187,7 @@ nest_smoke_status:
   entities:
     - sensor.basement_smoke_status
     - sensor.entryway_smoke_status
-    
+
 automations:
   name: Automation
   view: yes

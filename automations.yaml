@@ -23,3 +23,10 @@
 - !include automation/close_garage_door.yaml
 - !include automation/door_open.yaml
 # - !include automation/lock_battery_notify.yaml
+- !include automation/presence_arrived.yaml
+- !include automation/presence_home.yaml
+- !include automation/presence_left.yaml
+- !include automation/presence_away.yaml
+- !include automation/presence_away_hb_harestart.yaml
+- !include automation/presence_away_bb_harestart.yaml
+- !include automation/presence_extended_away.yaml

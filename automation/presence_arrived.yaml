@@ -1,0 +1,33 @@
+alias: Mark person as just arrived
+trigger:
+  - platform: state
+    entity_id: device_tracker.brendan
+    from: 'not_home'
+    to: 'home'
+  - platform: state
+    entity_id: device_tracker.heather
+    from: 'not_home'
+    to: 'home'
+action:
+  - service: input_select.select_option
+    data_template:
+      entity_id: >
+        {% if trigger.entity_id == 'device_tracker.brendan' %}
+          input_select.brendan_status_dropdown
+        {% else %}
+          input_select.heather_status_dropdown
+        {% endif %}
+      option: >
+        {% if trigger.entity_id == 'device_tracker.brendan' %}
+          {% if states.input_select.brendan_status_dropdown.state == 'Just Left' %}
+            Home
+          {% else %}
+            Just Arrived
+          {% endif %}
+        {% else %}
+          {% if states.input_select.heather_status_dropdown.state == 'Just Left' %}
+            Home
+          {% else %}
+            Just Arrived
+          {% endif %}
+        {% endif %}

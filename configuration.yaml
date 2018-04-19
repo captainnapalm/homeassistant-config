@@ -17,9 +17,14 @@ sun:
 # Enables the frontend
 frontend:
 
+hassio:
 # Logger level
 # logger:
   # default: critical
+
+# Cloud stuff
+# cloud:
+config:
 
 # Checks for available updates
 updater:
@@ -37,12 +42,10 @@ logbook:
       - binary_sensor.back_door_sensor
       - binary_sensor.basement_nest_protect_online
       - binary_sensor.basement_window_sensor
-      - binary_sensor.entryway_camera__zone_1_activity
-      - binary_sensor.entryway_camera__zone_2_activity
-      - binary_sensor.entryway_camera_motion_detected
-      - binary_sensor.entryway_camera_online
-      - binary_sensor.entryway_camera_person_detected
-      - binary_sensor.entryway_camera_sound_detected
+      - binary_sensor.entryway_camera_entryway__zone_1_activity
+      - binary_sensor.entryway_camera_entryway_motion_detected
+      - binary_sensor.entryway_camera_entryway_online
+      - binary_sensor.entryway_camera_entryway_sound_detected
       - binary_sensor.entryway_nest_protect_online
       - binary_sensor.front_door_sensor
       - binary_sensor.garage_door_sensor
@@ -56,12 +59,25 @@ logbook:
       - binary_sensor.home_entryway_nest_protect_co_detected
       - binary_sensor.home_entryway_nest_protect_smoke_detected
       - binary_sensor.hub_hub
-      - binary_sensor.living_room_camera_motion_detected
-      - binary_sensor.living_room_camera_online
-      - binary_sensor.living_room_camera_person_detected
-      - binary_sensor.living_room_camera_sound_detected
       - binary_sensor.overflow_drain_liquid_detected
       - binary_sensor.wink_relays_top_button_hub
+      - binary_sensor.hallway_nest_protect_online
+      - binary_sensor.home_basement_nest_protect_co_severity
+      - binary_sensor.home_basement_nest_protect_smoke_severity
+      - binary_sensor.home_entryway_camera_entryway_capturing_audio
+      - binary_sensor.home_entryway_camera_entryway_capturing_video
+      - binary_sensor.home_entryway_camera_entryway_loudness
+      - binary_sensor.home_entryway_camera_entryway_motion
+      - binary_sensor.home_entryway_nest_protect_co_severity
+      - binary_sensor.home_entryway_nest_protect_smoke_severity
+      - binary_sensor.home_hallway_nest_protect_co_detected
+      - binary_sensor.home_hallway_nest_protect_co_severity
+      - binary_sensor.home_hallway_nest_protect_smoke_detected
+      - binary_sensor.home_hallway_nest_protect_smoke_severity
+      - binary_sensor.home_nursery_camera_nursery_capturing_audio
+      - binary_sensor.home_nursery_camera_nursery_capturing_video
+      - binary_sensor.home_nursery_camera_nursery_loudness
+      - binary_sensor.home_nursery_camera_nursery_motion
       - camera.entryway
       - camera.living_room
       - group.all_automations
@@ -90,31 +106,6 @@ logbook:
       - media_player.living_room_players
       - media_player.nexus_7_2012
       - sensor.basement_nest_protect_battery_health
-      - sensor.dark_sky_apparent_temperature
-      - sensor.dark_sky_cloud_coverage
-      - sensor.dark_sky_daily_high_apparent_temperature
-      - sensor.dark_sky_daily_high_temperature
-      - sensor.dark_sky_daily_low_apparent_temperature
-      - sensor.dark_sky_daily_low_temperature
-      - sensor.dark_sky_daily_max_precip_intensity
-      - sensor.dark_sky_daily_summary
-      - sensor.dark_sky_dew_point
-      - sensor.dark_sky_hourly_summary
-      - sensor.dark_sky_humidity
-      - sensor.dark_sky_icon
-      - sensor.dark_sky_minutely_summary
-      - sensor.dark_sky_nearest_storm_bearing
-      - sensor.dark_sky_nearest_storm_distance
-      - sensor.dark_sky_ozone
-      - sensor.dark_sky_precip
-      - sensor.dark_sky_precip_intensity
-      - sensor.dark_sky_precip_probability
-      - sensor.dark_sky_pressure
-      - sensor.dark_sky_summary
-      - sensor.dark_sky_temperature
-      - sensor.dark_sky_visibility
-      - sensor.dark_sky_wind_bearing
-      - sensor.dark_sky_wind_speed
       - sensor.entryway_nest_protect_battery_health
       - sensor.hallway_thermostat_humidity
       - sensor.hallway_thermostat_hvac_state
@@ -123,8 +114,41 @@ logbook:
       - sensor.hallway_thermostat_temperature
       - sensor.megaplex
       - sun.sun
-
-
+      - sensor.pws_alerts
+      - sensor.pws_dewpoint_c
+      - sensor.pws_dewpoint_string
+      - sensor.pws_elevation
+      - sensor.pws_feelslike_c
+      - sensor.pws_feelslike_string
+      - sensor.pws_heat_index_c
+      - sensor.pws_heat_index_string
+      - sensor.pws_location
+      - sensor.pws_observation_time
+      - sensor.pws_precip_1hr_metric
+      - sensor.pws_precip_1hr_string
+      - sensor.pws_precip_today_in
+      - sensor.pws_precip_today_metric
+      - sensor.pws_precip_today_string
+      - sensor.pws_pressure_in
+      - sensor.pws_pressure_mb
+      - sensor.pws_pressure_trend
+      - sensor.pws_relative_humidity
+      - sensor.pws_solarradiation
+      - sensor.pws_station_id
+      - sensor.pws_temp_c
+      - sensor.pws_temperature_string
+      - sensor.pws_uv
+      - sensor.pws_visibility_km
+      - sensor.pws_weather
+      - sensor.pws_wind_degrees
+      - sensor.pws_wind_dir
+      - sensor.pws_wind_gust_kph
+      - sensor.pws_wind_kph
+      - sensor.pws_wind_string
+      - sensor.dark_sky_daily_high_temperature
+      - sensor.dark_sky_hourly_summary
+      - sensor.dark_sky_summary
+      - sensor.dark_sky_temperature
 
 # Enables support for tracking state changes over time.
 history:
@@ -165,8 +189,8 @@ media_player:
   # - platform: cast
     # host: 192.168.2.239
   # kitchen - Google Home
-  - platform: cast
-    host: 192.168.2.205
+  # - platform: cast
+    # host: 192.168.2.205
   # Nexus Player
   # - platform: cast
     # host: 192.168.2.79
@@ -187,8 +211,8 @@ media_player:
     children:
       # - media_player.basement
       - media_player.basement_roku
-      - media_player.my_nexus_player
-#      - media_player.roku_1gs3a2056551
+      # - media_player.my_nexus_player
+      # - media_player.roku_1gs3a2056551
   - platform: universal
     name: Living Room Players
     children:
@@ -199,9 +223,9 @@ media_player:
     children:
       # - media_player.bedroom
       - media_player.bedroom_roku
-  - platform: vlc
-    name: speaker_1
-    arguments: '--alsa-audio-device=hw:1,0'
+  # - platform: vlc
+    # name: speaker_1
+    # arguments: '--alsa-audio-device=hw:1,0'
 
 #pushbullet
 notify:
@@ -222,8 +246,25 @@ input_select:
      - Arm Capable
     initial: Arm Capable
     icon: mdi:alarm-check
+  brendan_status_dropdown:
+    name: Brendan
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
+  heather_status_dropdown:
+    name: Heather
+    options:
+      - Home
+      - Just Arrived
+      - Just Left
+      - Away
+      - Extended Away
+    initial: Home
 
-    
 #Input Boolean
 input_boolean:
   alarm_state:
@@ -232,11 +273,11 @@ input_boolean:
     icon: mdi:bell
 
 # Zwave Hub
-zwave:
-  usb_path: /dev/ttyACM0
-  config_path: /srv/homeassistant/homeassistant_venv/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
-  polling_interval: 30000
-  new_entity_ids: false
+# zwave:
+  # usb_path: /dev/ttyACM0
+  # config_path: /srv/homeassistant/homeassistant_venv/lib/python3.4/site-packages/libopenzwave-0.3.1-py3.4-linux-armv7l.egg/config
+  # polling_interval: 30000
+  # new_entity_ids: false
   
 #asus router for device tracker
 device_tracker:
@@ -258,17 +299,56 @@ automation: !include automations.yaml
 
 script: !include scripts.yaml
 
+alert: !include alerts.yaml
+
 tts:
   - platform: google
 
-vacuum:
-  - platform: roomba
-    host: 192.168.2.186
-    username: !secret roomba_blid_secret
-    password: !secret roomba_password_secret
-    name: Geoffrey
-# cover:
-  # - platform: myq
-    # username: brendan.berg@gmail.com
-    # password: PrabRU4u
-    # type: chamberlain
+# vacuum:
+  # - platform: roomba
+    # host: 192.168.2.186
+    # username: !secret roomba_blid_secret
+    # password: !secret roomba_password_secret
+    # name: Geoffrey
+cover:
+  - platform: myq
+    username: !secret myq_email
+    password: !secret myq_password
+    type: chamberlain
+
+light:
+  - platform: template
+    lights:
+      garage_door_opener:
+        friendly_name: "Garage Door Opener"
+        value_template: "{{ is_state('cover.garage_door_opener', 'open') }}"
+        turn_on:
+          service: cover.open_cover
+          data:
+            entity_id: cover.garage_door_opener
+        turn_off:
+          service: cover.close_cover
+          data:
+            entity_id: cover.garage_door_opener
+      front_door_lock:
+        friendly_name: "Front Door Lock"
+        value_template: "{{ is_state('lock.front_door_locked_10', 'locked') }}"
+        turn_on:
+          service: lock.lock
+          data:
+            entity_id: lock.front_door_locked_10
+        turn_off:
+          service: lock.unlock
+          data:
+            entity_id: lock.front_door_locked_10
+      back_door_lock:
+        friendly_name: "Back Door Lock"
+        value_template: "{{ is_state('lock.back_door_locked_11', 'locked') }}"
+        turn_on:
+          service: lock.lock
+          data:
+            entity_id: lock.back_door_locked_11
+        turn_off:
+          service: lock.unlock
+          data:
+            entity_id: lock.back_door_locked_11

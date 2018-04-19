@@ -1,0 +1,64 @@
+climate.hallway:
+  name:
+  platform: nest
+  unique_id: LRRRnoQxdUSmP56oCNY-Yss8BR93NWAM
+media_player.plex_web_chrome:
+  name:
+  platform: plex
+  unique_id: u7zskinozvsktrnlvzcpkurc
+media_player.living_room_roku:
+  name:
+  platform: plex
+  unique_id: 920c1a6a2bb6785b09dba91bf5e1ae1a
+media_player.shield_android_tv:
+  name:
+  platform: plex
+  unique_id: 7d43fd37a487bde8-com-plexapp-android
+switch.switch_4_0:
+  name:
+  platform: zwave
+  unique_id: 4-72057594109837312
+light.aeotec_zw099_smart_dimmer_6_level_12_0:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244071425
+light.aeotec_zw099_smart_dimmer_6_level_12_0_2:
+  name:
+  platform: zwave
+  unique_id: 12-144115188281999361
+sensor.aeotec_zw099_smart_dimmer_6_energy_12_0:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244268034
+sensor.aeotec_zw099_smart_dimmer_6_previous_reading_12_1:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244268050
+sensor.aeotec_zw099_smart_dimmer_6_power_12_8:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244268162
+sensor.aeotec_zw099_smart_dimmer_6_voltage_12_16:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244268290
+sensor.aeotec_zw099_smart_dimmer_6_current_12_20:
+  name:
+  platform: zwave
+  unique_id: 12-72057594244268354
+switch.aeotec_zw056_doorbell_gen5_switch_13_0:
+  name:
+  platform: zwave
+  unique_id: 13-72057594260832256
+media_player.bedroom_roku:
+  name:
+  platform: plex
+  unique_id: 8ba5f2d1a1afba62f9738aa57d42ba98
+media_player.nexus_7_2012:
+  name:
+  platform: plex
+  unique_id: 51c3bda6690259d-com-plexapp-android
+media_player.basement_roku:
+  name:
+  platform: plex
+  unique_id: a8fe9b6cab74557fc0a55d1a5514b16f
